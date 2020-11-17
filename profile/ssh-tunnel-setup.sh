@@ -80,7 +80,7 @@ do
   # ServerAliveInterval: Number of seconds between sending a packet to the server (to keep the connection alive).
   # ClientAliveCountMax: Number of above ServerAlive packets before closing the connection. Autossh will create a new connection when this happens.
 
-  autossh -f -M $M -N -o "ServerAliveInterval 10" -o "ServerAliveCountMax 3" -L $tunnel_opts $target_ssh -p $ssh_port
+  AUTOSSH_DEBUG=1 AUTOSSH_LOGFILE=autossh.log  autossh -f -M $M -v -N -o "ServerAliveInterval 10" -o "ServerAliveCountMax 3" -L $tunnel_opts $target_ssh -p $ssh_port
 
   # Increment monitored port by two since two ports are used in monitoring $M and $M+1
   M=$(($M + 2))
